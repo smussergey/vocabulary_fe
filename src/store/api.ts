@@ -16,15 +16,6 @@ export const learnEnglishApi = axios.create({
 });
 
 
-// export async function getGlobalFeed() {
-//     const response = await conduitApi.get('/articles');
-//     return response.data as ArticlesResponse;
-// }
-// export async function downLoadIrregularVerbs(): Promise<IrregularVerbsResponse> {
-//     const response = await learnEnglishApi.get('/api/content/iv');
-//     return response.data as IrregularVerbsResponse;
-// }
-
 
 export async function downLoadArticlePreviews(topic: string): Promise<ArticlePreview[]> {
     const response = await learnEnglishApi.get(`/content/articles/${topic}`);
