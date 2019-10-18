@@ -17,6 +17,11 @@ export default new Router({
       component: () => import('@/views/IrregularVerbsTutorial.vue'),
     },
     {
+      path: '/irregularverbseditor',
+      name: 'irregularverbseditor',
+      component: () => import('@/views/IrregularVerbsEditor.vue'),
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('@/views/Login.vue'),

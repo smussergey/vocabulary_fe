@@ -1,9 +1,7 @@
 <template>
-<div>
-  <!-- <b-jumbotron header="Improve your vocabulary" lead="Learn more"> -->
+  <div>
     <p>Improve your vocabulary</p>
-  <!-- </b-jumbotron> -->
-</div>
+  </div>
 </template>
 
 <script lang="ts">

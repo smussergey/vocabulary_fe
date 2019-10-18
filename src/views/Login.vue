@@ -3,7 +3,7 @@
     <div class="container page ">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12 ">
-          <h1 class="text-xs-center ">Sign in</h1>
+          <h1 class="text-xs-center ">Login</h1>
 
           <ul class="error-messages" v-if="loginError">
             <li>{{ loginError }}</li>
@@ -37,14 +37,15 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import usersStore from '@/store/modules/usersStore';
+import { UserResponse } from '../store/models';
 
 @Component
 export default class Login extends Vue {
-  public username = 'adm';
-  public password = 'admpas';
-  public loginError = '';
+  private username = 'adm';
+  private password = 'admpas';
+  private loginError = '';
 
-  public login() {
+  private login() {
     usersStore
       .login({
         username: this.username,
@@ -55,6 +56,7 @@ export default class Login extends Vue {
         // tslint:disable-next-line:no-console
         console.error(err);
         this.loginError = 'Invalid username or password';
+        // this.loginError = (usersStore.userResponse as any).errorMessage;
       });
   }
 }

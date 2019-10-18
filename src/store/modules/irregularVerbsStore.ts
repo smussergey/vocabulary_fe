@@ -15,13 +15,14 @@ import usersStore from './usersStore';
 @Module({
   dynamic: true,
   namespaced: true,
-  name: 'irregularVerbsName',
+  name: 'irregularVerbsStore',
   store,
 })
 class IrregularVerbsModule extends VuexModule {
   public irregularVerbsAll: IrregularVerb[] = [];
   public irregularVerbsToLearn: IrregularVerb[] = [];
   public irregularVerbsLearnt: IrregularVerb[] = [];
+  public filesToUpload: File[] = [];
 
 
   @Mutation
@@ -46,8 +47,7 @@ class IrregularVerbsModule extends VuexModule {
 
   @Mutation
   public clearStateOfIrregularVerbs() {
-    // this.irregularVerbsAll = [];
-    this.irregularVerbsToLearn = this.irregularVerbsAll;  //  REDO
+    this.irregularVerbsToLearn = this.irregularVerbsAll;
     this.irregularVerbsLearnt = [];
   }
 

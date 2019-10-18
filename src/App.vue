@@ -2,9 +2,6 @@
   <div id="app">
     <jumbotron></jumbotron>
     <navbar></navbar>
-    <!-- <router-link to="/">Home</router-link>|
-    <router-link to="/about">About</router-link>-->
-
     <router-view />
     <footer></footer>
   </div>

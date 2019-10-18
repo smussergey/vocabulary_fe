@@ -3,17 +3,17 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Sign up</h1>
+          <h1 class="text-xs-center">Register</h1>
 
-          <ul class="error-messages" v-if="loginError">
-            <li>{{ loginError }}</li>
+          <ul class="error-messages" v-if="registerError">
+            <li>{{ registerError }}</li>
           </ul>
           <form onsubmit="event.preventDefault()">
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
                 type="text"
-                v-model="username"
+                v-model="user.username"
                 placeholder="Username"
               />
             </fieldset>
@@ -21,7 +21,7 @@
               <input
                 class="form-control form-control-lg"
                 type="password"
-                v-model="password"
+                v-model="user.password"
                 placeholder="Password"
               />
             </fieldset>
@@ -29,7 +29,7 @@
               <input
                 class="form-control form-control-lg"
                 type="text"
-                v-model="email"
+                v-model="user.email"
                 placeholder="Email"
               />
             </fieldset>
@@ -37,7 +37,7 @@
               <input
                 class="form-control form-control-lg"
                 type="text"
-                v-model="firstName"
+                v-model="user.firstName"
                 placeholder="First name"
               />
             </fieldset>
@@ -45,7 +45,7 @@
               <input
                 class="form-control form-control-lg"
                 type="text"
-                v-model="lastName"
+                v-model="user.lastName"
                 placeholder="Last name"
               />
             </fieldset>
@@ -60,30 +60,33 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import usersStore from '@/store/modules/usersStore';
+import { User } from '../store/models';
 
 @Component
 export default class Register extends Vue {
-  public username: string = '';
-  public password: string = '';
-  public email: string = '';
-  public firstName: string = '';
-  public lastName: string = '';
-  public loginError = '';
+  // private username: string = '';
+  // private password: string = '';
+  // private email: string = '';
+  // private firstName: string = '';
+  // private lastName: string = '';
+  private registerError = '';
 
-  public register() {
+  private user: User = {
+    id: null,
+    username: '',
+    password: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+  };
+  private register() {
     usersStore
-      .registerNewUser({
-        username: this.username,
-        password: this.password,
-        email: this.email,
-        firstName: this.firstName,
-        lastName: this.lastName,
-      })
+      .register(this.user)
       .then(() => this.$router.push('/'))
-      .catch((err) => {
+      .catch((err: any) => {
         // tslint:disable-next-line:no-console
         console.error(err);
-        this.loginError = 'Invalid username or password';
+        this.registerError = 'Invalid username or password';
       });
   }
 }

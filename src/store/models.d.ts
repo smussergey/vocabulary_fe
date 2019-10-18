@@ -1,6 +1,52 @@
 
 import { IrregularVerb } from './models.d';
 
+export interface User {
+    id: number | null;
+    username: string;
+    password: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+}
+
+
+export interface UserProfile {
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+}
+
+
+
+export interface UserSubmit {
+    username: string;
+    password: string;
+}
+
+export interface UserResponse {
+    username: string;
+    userFirstName: string;
+    token: string;
+}
+
+// export interface UserForCreateOrUpdate {
+//     // id: number;
+//     username: string;
+//     password: string;
+//     email: string;
+//     firstName: string;
+//     lastName: string;
+
+
+// }
+
+
+
+
+
+
 export interface IrregularVerb {
     id: number;
     infinitive: string;
@@ -20,13 +66,6 @@ export interface IrregularVerbsResponse {
 }
 
 
-export interface Profile {
-    username?: string;
-    password?: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
 
 // export interface User {
 //     email: string;
@@ -36,13 +75,6 @@ export interface Profile {
 //     image?: string;
 // }
 
-export interface User {
-    username: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    token: string;
-}
 
 // export interface UserForUpdate {
 //     email?: string
@@ -80,33 +112,13 @@ export interface ArticlePreview {
 //     password: string;
 // }
 
-export interface UserSubmit {
-    username: string;
-    password: string;
-}
-
-export interface UserResponse {
-    username: string;
-    userFirstName: string;
-    token: string;
-}
-
-export interface UserForCreateOrUpdate {
-    // id: number;
-    username: string;
-    password: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-
-
-}
 
 
 
-export interface ProfileResponse {
-    profile: Profile;
-}
+
+// export interface ProfileResponse {
+//     profile: Profile;
+// }
 
 // export interface ArticlesResponse {
 //     articles?: (Article)[] | null;

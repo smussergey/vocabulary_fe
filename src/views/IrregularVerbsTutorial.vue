@@ -154,7 +154,6 @@ export default class IrregularVerbsTurorial extends Vue {
 
   public async created() {
     if (irregularVerbsStore.irregularVerbsAll.length === 0) {
-      // alert('created if statement');
       irregularVerbsStore.fetchIrregularVerbs();
     } else if (
       irregularVerbsStore.irregularVerbsToLearn.length ===
@@ -162,10 +161,8 @@ export default class IrregularVerbsTurorial extends Vue {
       irregularVerbsStore.irregularVerbsLearnt.length === 0 &&
       usersStore.isUserLogined
     ) {
-      // alert('created else if statement');
       irregularVerbsStore.fetchIrregularVerbs();
     }
-    // alert('created');
     this.articlePreviews = articleStore.articlePreviewsGeneral;
   }
 

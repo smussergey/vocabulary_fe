@@ -21,10 +21,13 @@
           <router-link class="nav-link" to="/irregularverbstutorial">Irregular verbs</router-link>
         </li>
         <li class="nav-item">
+          <router-link class="nav-link" to="/irregularverbseditor">Irregular verbs Editor</router-link>
+        </li>
+        <li class="nav-item">
           <router-link class="nav-link" to="#">Phrasal verbs</router-link>
         </li>
       </ul>
-      <ul class="navbar-nav  my-2 my-lg-0">
+      <ul class="navbar-nav my-2 my-lg-0">
         <li v-if="!userFirstName" class="nav-item">
           <router-link class="nav-link" to="/login">
             <i class="fa fa-fw fa-user"></i>Login
@@ -35,7 +38,7 @@
             <i class="fa fa-fw fa-user"></i>Register
           </router-link>
         </li>
-       
+
         <!-- Dropdown -->
         <li v-if="userFirstName" class="nav-item dropdown">
           <a
@@ -50,7 +53,6 @@
           </div>
         </li>
       </ul>
-      
     </div>
   </nav>
 </template>
@@ -64,13 +66,12 @@ import irregularVerbsStore from '../store/modules/irregularVerbsStore';
 
 @Component
 export default class AppNavbar extends Vue {
-  get userFirstName() {
+ private get userFirstName() {
     return usersStore.userFirstName;
   }
 
-  public logOut() {
+  private logOut() {
     usersStore.logOutUser();
-    // irregularVerbsStore.deleteIrregularVerbsValues();
     if (this.$route.name === 'home') {
       return;
     }
@@ -80,23 +81,6 @@ export default class AppNavbar extends Vue {
 </script>
 
  <style scoped>
-/* .navbar {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-} */
 
 #nav a {
   font-weight: bold;

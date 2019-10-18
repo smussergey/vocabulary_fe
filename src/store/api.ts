@@ -1,10 +1,9 @@
 // import axios from 'axios';
 import {
-    UserForCreateOrUpdate,
-    Profile,
-    ProfileResponse,
     UserResponse,
     UserSubmit,
+    UserProfile,
+    User,
 } from './models';
 
 import axios from 'axios';
@@ -16,11 +15,61 @@ export const learnEnglishApi = axios.create({
 });
 
 
+// learnEnglishApi.interceptors.request.use((config) => {
+//     // perform a task before the request is sent
+//     // tslint:disable-next-line: no-console
+//     console.log('Request was sent');
+
+//     return config;
+// }, (error) => {
+//     // handle the error
+//     alert(error);
+//     return Promise.reject(error);
+// });
+
+
+
+export function setJWT(jwt: string) {
+    // alert('setJWT ' + jwt);
+    learnEnglishApi.defaults.headers.common.Authorization = `Bearer_${jwt}`;
+}
+
+export function deleteJWT() {
+    learnEnglishApi.defaults.headers.common.Authorization = ``;
+}
+
+
+export async function registerUser(user: User): Promise<UserResponse> {
+    const response = await learnEnglishApi.post('/auth/register', user);
+    return response.data as UserResponse;
+}
+
+export async function loginUser(userSubmit: UserSubmit): Promise<UserResponse> {
+    const response = await learnEnglishApi.post('/auth/login', userSubmit);
+
+    return response.data as UserResponse;
+}
+
+
+export async function downLoadUserProfile(): Promise<UserProfile> {
+    const response = await learnEnglishApi.get('/users/profile');
+    return response.data as UserProfile;
+}
+
+export async function updateUserProfile(userProfile: UserProfile): Promise<any> {
+    const response = await learnEnglishApi.put('/users/profile', userProfile);
+    return response;
+}
+
+
+
+
+
+
+
 
 export async function downLoadArticlePreviews(topic: string): Promise<ArticlePreview[]> {
     const response = await learnEnglishApi.get(`/content/articles/${topic}`);
-    // const response = await learnEnglishApi.get(`/content/articles/${topic}');
-    // alert('setarticlePreviewsGeneral = ' + (response.data as ArticlePreview[]).length);
     return response.data as ArticlePreview[];
 }
 
@@ -37,9 +86,6 @@ export async function downLoadIrregularVerbsAll() {
 }
 
 
-export async function downLoadUserProfile() {
-    return await learnEnglishApi.get('/users/profiles');
-}
 
 // export async function downLoadUserProfile() {
 //     const webApiUrl = 'http://localhost:8075/api/content/users/profiles';
@@ -56,27 +102,21 @@ export async function downLoadUserProfile() {
 // }
 
 
-export function setJWT(jwt: string) {
-    // alert('setJWT ' + jwt);
-    learnEnglishApi.defaults.headers.common.Authorization = `Bearer_${jwt}`;
+
+
+
+
+
+
+
+export async function uploadFileToServer(formData: FormData): Promise<string> {
+    const response = await learnEnglishApi.post('/admin/files', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data as string;
 }
-
-export function deleteJWT() {
-    learnEnglishApi.defaults.headers.common.Authorization = ``;
-}
-
-
-export async function loginUser(userSubmit: UserSubmit): Promise<UserResponse> {
-    const response = await learnEnglishApi.post('/auth/login', userSubmit);
-    return response.data as UserResponse;
-}
-
-export async function registerUser(userForCreateOrUpdate: UserForCreateOrUpdate): Promise<UserResponse> {
-    const response = await learnEnglishApi.post('/auth/register', userForCreateOrUpdate);
-    return response.data as UserResponse;
-}
-
-
 
 // export async function fetchProfile(username: string): Promise<Profile> {
 //     const response = await learnEnglishApi.get(`/profiles/${username}`);

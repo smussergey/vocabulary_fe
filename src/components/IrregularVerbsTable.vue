@@ -51,13 +51,13 @@ import irregularVerbsStore from '@/store/modules/irregularVerbsStore';
 @Component
 export default class IrregularVerbsTable extends Vue {
   @Prop()
-  public readonly currentTub!: string;
+  private currentTub!: string;
   @InjectReactive('changeTranscriptionState')
   private hideTranscription!: boolean;
   @InjectReactive('changeControlButtonsState')
   private hideControlButtons!: boolean;
 
-  get processedIrregularVerbs(): IrregularVerb[] {
+  private get processedIrregularVerbs(): IrregularVerb[] {
     switch (this.currentTub) {
       case 'all':
         return irregularVerbsStore.irregularVerbsAll;
@@ -68,7 +68,7 @@ export default class IrregularVerbsTable extends Vue {
     }
   }
 
-  public changeStateOfIrregularVerb(itemToMoove: IrregularVerb) {
+  private changeStateOfIrregularVerb(itemToMoove: IrregularVerb) {
     if (this.currentTub === 'tolearn') {
       irregularVerbsStore.changeStateIntoLearnt(itemToMoove);
     } else if (this.currentTub === 'learnt') {

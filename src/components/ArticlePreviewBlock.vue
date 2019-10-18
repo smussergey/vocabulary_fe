@@ -1,6 +1,5 @@
 <template>
   <div>
-  <p>Hello</p>
     <div v-for="ap in processedArticlePreviews" v-bind:key="ap.id">
       <h5>{{ap.title}}</h5>
       <p>{{ap.description}}</p>
